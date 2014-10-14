@@ -1,0 +1,122 @@
+doctype html
+html(lang="en")
+  head
+    title= testAPI 
+    script(src="http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js")
+  body
+    div= user
+    textarea(id="t1") {"a":1,"b":2,"c":3}
+    button(id="submit1") submit project1
+    button(id="submit2") submit project2
+    div(id="d1")
+    div(id="d2")
+    button(id="get1") show project1
+    button(id="get2") show project2
+    button(id="getAll") show All
+    button(id="getproject") show Project
+    button(id="getUsers") show users
+    button(id="rmp1") remove project1
+    button(id="rmall") remove All
+    each mod in enabledMod
+        p= mod
+    - var _enabledMod = enabledMod;
+    each item in modules
+        input(type="checkbox" class="modulesSelect" value=item.id)
+        = item.title
+    script(type='text/javascript').
+        $('#submit1').click(function(){
+            var t1 = $.parseJSON($('#t1').val());
+            $.post('/post/p1',{data:t1},function(response){
+                alert(response)
+            })
+        });
+        $('#submit2').click(function(){
+            var t1 = $.parseJSON($('#t1').val());
+            $.post('/post/p2',{data:t1},function(response){
+                alert(response)
+            })
+        });
+        $('#get1').click(function(){
+            $.get('/get/p1',function(response){
+                console.log('p1: ',response);
+            })
+        });
+        $('#get2').click(function(){
+            $.get('/get/p2',function(response){
+                console.log('p2: ',response);
+            })
+        });
+        $('#getAll').click(function(){
+            $.get('/get/all',function(response){
+                console.log('all: ',response);
+            })
+        });
+        $('#getUsers').click(function(){
+            $.get('/getuser',function(response){
+                console.log('all users: ',response);
+            })
+        });
+        $('#getproject').click(function(){
+            $.get('/getproject',function(response){
+                console.log('all project: ',response);
+            })
+        });
+        $('#rmp1').click(function(){
+            $.get('/remove/p1',function(response){
+                console.log('remove p1.');
+            })
+        });
+        $('#rmall').click(function(){
+            $.get('/remove/all',function(response){
+                console.log('remove all.');
+            })
+        });
+        $('.modulesSelect').each(function(){
+            var _temp = "#{_enabledMod}";
+            var enabledMod = _temp.split(',');
+            if($.inArray($(this).val(),enabledMod)>-1){
+                $(this).prop('checked',true);
+            }else{
+                $(this).prop('checked',false);
+            }
+        });
+        $('.modulesSelect').click(function(){
+            if($(this).prop('checked') == true){
+                $.get('/setconfig/moduleList/add',{value:$(this).val()},function(res){
+                    console.log(res);
+                });
+            }else{
+                $.get('/setconfig/moduleList/rm',{value:$(this).val()},function(res){
+                    console.log(res);
+                });
+            }
+        });
+    div(id="login")
+        input(id="name")
+        input(id="pwd",type="password")
+        button(id="loginBtn") test login
+    script(type='text/javascript').
+        $('#loginBtn').click(function(){
+            $.post('/login',{username:$('#name').val(),pwd:$('#pwd').val()},function(response){
+                alert(response)
+            })
+        });
+    div(id="search")
+        input(id="key", value="测试")
+    script(type="text/javascript").
+        //var flag = false;
+        $('#key').keyup(function(){
+            //if(flag == false){
+              //  flag=true;
+                //setTimeout(function(){
+                    var key = $('#key').val();
+                    console.log('key=',key);
+                    if(key.length!=0){
+                        $.get('/search/'+$('#key').val(),function(res){
+                            console.log(res);
+              //              flag=false;
+                        })
+                    }
+                //},500);
+            //}
+        })

@@ -1,0 +1,18 @@
+{
+    "eqeqeq": false, //relax opt
+    "trailing": false, //relax opt
+    "sub": true, // relax opt
+    "bitwise": true, //enforce opt
+    "smarttabs": true, //Mixed spaces and tabs relax opt
+    "eqnull": true, // === null relax opt
+    "multistr": true, // relax opt \
+    "expr": true, //relax opt &&
+    "indent": false, // enforce opt maybe Mixed spaces and tabs relax opt
+    "laxcomma":true,
+    "globalstrict":true,
+    "esnext":true,
+    "evil":true,
+    "noyield":true,
+    "debug":false,
+    "node":true
+}

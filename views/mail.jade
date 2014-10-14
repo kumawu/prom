@@ -1,0 +1,113 @@
+doctype html
+html(lang='en')
+  head
+    title Jade
+    script(src="http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js")
+  body
+    a(id="send") send
+    p(style='text-align:center')
+      strong
+        | 前端组工作周报—（
+        span= beforeDate.m
+        | 月
+        span= beforeDate.d
+        | 日—
+        span= date.m
+        | 月
+        span= date.d
+        | 日）
+    p(style='text-align:center')
+      b= user
+
+    p(style='text-indent:0')
+      b 本周重点项目进度：
+    p
+      b
+        span  
+    p
+      b
+        span  
+    table(border='1', cellspacing='0', cellpadding='0', width='744', style='width: 595px;border: none')
+      tbody
+        tr
+          td(width='106', valign='top', style='width:85px;border:solid black 1px;border-right:none;background:black;padding:0 7px 0 7px')
+            p(style='text-indent:0')
+              span(style='color: white') 产品线
+          td(width='272', valign='top', style='width:217px;border-top:solid black 1px;border-left:none;border-bottom:solid black 1px;border-right:none;background:black;padding:0 7px 0 7px')
+            p(style='text-indent:0')
+              span(style='color: white') 项目
+          td(width='144', valign='top', style='width:115px;border-top:solid black 1px;border-left:none;border-bottom:solid black 1px;border-right:none;background:black;padding:0 7px 0 7px')
+            p(style='text-indent:0')
+              span(style='color: white') 当前状态
+          td(width='160', valign='top', style='width:127px;border-top:solid black 1px;border-left:none;border-bottom:solid black 1px;border-right:none;background:black;padding:0 7px 0 7px')
+            p(style='text-indent:0')
+              span(style='color: white') 当前状态完成度
+          td(width='89', valign='top', style='width:71px;border:solid black 1px;border-left:none;background:black;padding:0 7px 0 7px')
+            p(style='text-indent:0')
+              span(style='color: white') 总进度
+        each item in documents
+          - var bgColor = (item.percentageAll == 100)?"#BDECC8":"#DBDBDB"
+          tr
+            td(width='106', valign='top', style='width:85px;border:solid #666666 1px;border-top:none;background:#{bgColor};padding:0 7px 0 7px')
+              p(style='text-indent:0')
+                b= item.moduleName
+            td(width='272', valign='top', style='width:217px;border-top:none;border-left:  none;border-bottom:solid #666666 1px;border-right:solid #666666 1px;background:#{bgColor};padding:0 7px 0 7px')
+              p(style='text-indent:0')= item.name
+            td(width='144', valign='top', style='width:115px;border-top:none;border-left:  none;border-bottom:solid #666666 1px;border-right:solid #666666 1px;background:#{bgColor};padding:0 7px 0 7px')
+              p(style='text-indent:0')= item.state
+            td(width='160', valign='top', style='width:107px;border-top:none;border-left:  none;border-bottom:solid #666666 1px;border-right:solid #666666 1px;background:#{bgColor};padding:0 7px 0 7px')
+              p(style='text-indent:0')
+                span= item.percentage
+                |%
+            td(width='89', valign='top', style='width:71px;border-top:none;border-left:none;border-bottom:solid #666666 1px;border-right:solid #666666 1px;background:#{bgColor};padding:0 7px 0 7px')
+              p(style='text-indent:0')
+                span= item.percentageAll
+                |%
+    p
+      span
+        br
+      | 下周重点工作：
+    p
+      span
+        table(border='1', cellspacing='0', cellpadding='0', width='744', style='width: 595px;border: none')
+          tbody
+            tr
+              td(width='106', valign='top', style='width:85px;border:solid black 1px;border-right:none;background:black;padding:0 7px 0 7px')
+                p(style='text-indent:0')
+                  span(style='color: white') 产品线
+              td(width='272', valign='top', style='width:217px;border-top:solid black 1px;border-left:none;border-bottom:solid black 1px;border-right:none;background:black;padding:0 7px 0 7px')
+                p(style='text-indent:0')
+                  span(style='color: white') 项目
+              td(width='144', valign='top', style='width:115px;border-top:solid black 1px;border-left:none;border-bottom:solid black 1px;border-right:none;background:black;padding:0 7px 0 7px')
+                p(style='text-indent:0')
+                  span(style='color: white') 目标状态
+              td(width='160', valign='top', style='width:127px;border-top:solid black 1px;border-left:none;border-bottom:solid black 1px;border-right:none;background:black;padding:0 7px 0 7px')
+                p(style='text-indent:0')
+                  span(style='color: white') 目标完成度
+              td(width='89', valign='top', style='width:71px;border:solid black 1px;border-left:none;background:black;padding:0 7px 0 7px')
+                p(style='text-indent:0')
+                  span(style='color: white') 总进度
+            each item in documents
+              tr
+                td(width='106', valign='top', style='width:85px;border:solid #666666 1px;border-top:none;background:#CCCCCC;padding:0 7px 0 7px')
+                  p(style='text-indent:0')
+                    b= item.moduleName
+                td(width='272', valign='top', style='width:217px;border-top:none;border-left:  none;border-bottom:solid #666666 1px;border-right:solid #666666 1px;background:#DBDBDB;padding:0 7px 0 7px')
+                  p(style='text-indent:0')= item.name
+                td(width='144', valign='top', style='width:115px;border-top:none;border-left:  none;border-bottom:solid #666666 1px;border-right:solid #666666 1px;background:#DBDBDB;padding:0 7px 0 7px')
+                  p(style='text-indent:0')= item.nextState
+                td(width='160', valign='top', style='width:107px;border-top:none;border-left:  none;border-bottom:solid #666666 1px;border-right:solid #666666 1px;background:#DBDBDB;padding:0 7px 0 7px')
+                  p(style='text-indent:0')
+                    span= item.nextPer
+                    |%
+                td(width='89', valign='top', style='width:71px;border-top:none;border-left:none;border-bottom:solid #666666 1px;border-right:solid #666666 1px;background:#DBDBDB;padding:0 7px 0 7px')
+                  p(style='text-indent:0')
+                    span= item.nextPerAll
+                    |%
+    
+    script(type='text/javascript').
+        $('#send').click(function(){
+          $.get('/send',function(res){
+            alert('Sent.');
+          })
+        });

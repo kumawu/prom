@@ -1,0 +1,165 @@
+<!-- Author: Yiyi Dai   Date: Aug 14, 2014 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../css/index.css" type="text/css" rel="stylesheet" />
+    <title>项目管理系统</title>
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/socket.io-1.1.0.js"></script>
+    <script type="text/javascript" src="../js/index.js"></script>
+</head>
+<body class="main">
+<div id="BG"></div>
+    <!-- 主页面 -->
+    <div id="modaddplace" class="wrap">
+        <div class="toptips" id="toptips">@media screen and (min-width: 1024px){ .mod{width: 950px;} .top_position{width: 73%};}</div>
+        <div class="top_wrap"></div>
+        <div class="top">
+            <div class="top_position">
+                <a class="top_logo"></a>
+                <div class="top_search_wrap">
+                    <div class="top_search_text">
+                        <input value="搜索产品线、项目" onFocus="this.value=''" onBlur="this.value='搜索产品线、项目'"></div>
+                    <div class="top_search_hint" style="display:none;">
+                        <div class="top_search_mod_subject"></div>
+                        <div class="top_search_result_mod"></div>
+                        <hr/>
+                        <div class="top_search_project_subject"></div>
+                        <div class="top_search_result_project"></div>
+                    </div>
+                </div>
+                <div class="top_logout">退出</div>
+
+                    <a href="/preview" target="_blank" id="export" class="top_mail_icon"></a>
+                <i class="top_setting_icon"></i>
+                <div class="top_login_name">登录</div>
+
+                <div class="top_login_icon"></div>
+                <div class="top_search_icon"></div>
+                
+            </div>
+        </div>
+        <!-- 产品线 -->
+        <div id="modaddwrap" class="mod">
+            <div class="mod_add"></div>
+        </div>
+        <!-- 回到顶部 -->
+        <div class="icon_up"></div>
+    </div>
+
+    <!-- 登录弹窗 -->
+    <div id="login" class="login clearfix" style="display:none;">
+        <div class="login_title">用户登陆</div>
+        <div class="login_wrap">
+            <div class="login_name">
+                用户名：
+                <input type="text" value="请输入用户名" />
+            </div>
+        </div>
+        <div class="login_wrap">
+            <div class="login_pw">
+                密 码：
+                <input type="password" value="********" />
+            </div>
+        </div>
+        <div class="login_fn_dl">登录</div>
+        <div class="login_fn_qx">取消</div>
+        <p class="login_error">用户名或密码错误</p>
+    </div>
+    <!-- 页面顶端 -->
+
+    <!-- 修改项目内容弹窗 -->
+    <div id="popup_cover" class="cover hide">
+        <div class="editwindow clearfix">
+            <div class="editwindow_icon_del"></div>
+            <input class="editwindow_card_id" type="hidden" />
+            <textarea class="editwindow_name"></textarea>
+            <div class="editwindow_statebutton">
+                <div class="editwindow_stateicon"></div>
+                <div class="editwindow_statetext">编辑状态</div>
+            </div>
+            <div class="editwindow_statedemo">需求评审</div>
+            <!-- 修改状态弹窗 -->
+            <div id="editwindow_state" class="editwindow_state hide">
+                <div class="editwindow_statetitle">编辑状态</div>
+                <div class="editwindow_close"></div>
+                <div class="editwindow_line"></div>
+                <div class="editwindow_xqps">需求评审</div>
+                <div class="editwindow_ymgj">页面构建</div>
+                <div class="editwindow_kfz">开发中</div>
+                <div class="editwindow_ltz">联调中</div>
+                <div class="editwindow_csz">测试中</div>
+                <div class="editwindow_ysx">已上线</div>
+            </div>
+            <!-- 修改进度 -->
+            <div class="editwindow_per">
+                进度：
+                <div class="progressbar">
+                    <div class="text">50%</div>
+                    <div class="bar" style="width: 50%;"></div>
+                </div>
+                <div class="editwindow_per_input hide">
+                    <input type="input" value="50">
+                    <label>%</label>
+                    <button>确定</button>
+                </div>
+            </div>
+            <div class="editwindow_tj">提交</div>
+            <div class="editwindow_next" id="proceedNext">下周规划？</div>
+            <div class="editwindow_memberbutton">
+                <div class="editwindow_stateicon"></div>
+                <div class="editwindow_statetext">成员</div>
+            </div>
+            <div class="editwindow_memberdemo"></div>
+            <!-- 修改成员弹窗 -->
+            <div class="editwindow_member hide">
+                <div class="editwindow_membertitle">成员</div>
+                <div class="editwindow_close"></div>
+                <div class="editwindow_line"></div>
+                <div class="editwindow_memberlist" default="true">
+                    <div class="name">wukan</div>
+                    <div class="member_add"></div>
+                </div>
+                <div class="editwindow_memberlist" default="true">
+                    <div class="name">lihan2</div>
+                    <div class="member_add"></div>
+                </div>
+                <div class="editwindow_memberlist" default="true">
+                    <div class="name">shaobo3</div>
+                    <div class="member_add"></div>
+                </div>
+            </div>
+            <div id="next_week_frame" class="hide">
+                <div class="editwindow_per">
+                    进度：
+                    <div class="progressbar">
+                        <div class="text">50%</div>
+                        <div class="bar" style="width: 50%;"></div>
+                    </div>
+                    <div class="editwindow_per_input hide">
+                        <input type="input" value="50">
+                        <label>%</label>
+                        <button>确定</button>
+                    </div>
+                </div>
+                <div class="editwindow_statebutton">
+                    <div class="next_stateicon"></div>
+                    <div class="next_statetext toggleMenu">编辑状态</div>
+                </div>
+                <div id="next_state" class="hide">
+                    <div class="editwindow_close"></div>
+                    <div class="editwindow_line"></div>
+                    <div class="editwindow_xqps">需求评审</div>
+                    <div class="editwindow_ymgj">页面构建</div>
+                    <div class="editwindow_kfz">开发中</div>
+                    <div class="editwindow_ltz">联调中</div>
+                    <div class="editwindow_csz">测试中</div>
+                    <div class="editwindow_ysx">已上线</div>
+                </div>
+                <div class="statedemo">需求评审</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
