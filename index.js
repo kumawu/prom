@@ -264,26 +264,6 @@ module.exports = function() {
                 });
             }
         });
-
-        //  var svn = 'svn log --no-auth-cache --username ' + req.param('username') + ' --password "' + req.param('pwd') + '" https://svn1.intra.sina.com.cn/weibo/ria/t4/enterprise/dev/trunk/static/js/xIframeH.js';
-        // var child = exec(svn, {
-        //     timeout: 2000
-        // }, function(error, stdout, stderr) {
-        //     //console.log('stdout: ' + stdout);
-        //     //console.log('stderr: ' + stderr);
-        //     if (error !== null) {
-        //         //console.log('exec error: ' + error);
-        //     }
-        //     if (stdout.indexOf('wukan') > -1) {
-        //         res.send('Passed');
-        //     } else {
-        //         console.log('timeout!');
-        //         res.send('Not Pass.');
-
-        //     }
-        // });
-
-        //router.login(req.param('username')+'@staff.sina.com.cn',req.param('pwd'),res);
     })
     app.get('/search/:value', function(req, res) {
 
